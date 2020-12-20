@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
                 transform.position += Dir * movementSpeed * Time.deltaTime;
             }
-
         }
     }
 }
