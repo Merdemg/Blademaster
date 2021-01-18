@@ -38,18 +38,16 @@ public class PlayerDamage : MonoBehaviour
     }
 
     private void OnTriggerStay(Collider other) {
-        //if (other.gameObject != gameObject) {
-        //    Debug.Log("On Trigger Stay");
-        //}
-        //if (other.gameObject.GetComponentInParent<IDamagable>() != null) {
-        //    Debug.Log("Can damage");
-        //}
-
         if (counter >= damageFrequency) {
             if (other.gameObject.GetComponentInParent<IDamagable>() != null) {
                 isSomethingHit = true;
                 other.GetComponentInParent<IDamagable>().TakeDamage(baseDamage);
             }
         }
+    }
+
+    public void MultiplyBaseDamage(float _Multiplier) {
+        baseDamage *= _Multiplier;
+        Debug.Log("Base damage is now: " + baseDamage);
     }
 }

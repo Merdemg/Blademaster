@@ -28,4 +28,5 @@ public class EnemyLevel {
     public float hitPoints;
     public float sizeMultiplier;
     public Color color;
+    public int xpReward;
 }

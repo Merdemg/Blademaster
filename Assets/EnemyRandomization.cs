@@ -23,6 +23,7 @@ public class EnemyRandomization : MonoBehaviour
                 damagable = GetComponent<IDamagable>();
             }
             damagable.SetHealth(enemyLevel.hitPoints);
+            damagable.SetXPReward(enemyLevel.xpReward);
 
         }
         else {

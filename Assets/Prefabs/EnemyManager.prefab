@@ -45,22 +45,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLevels:
   - level: 1
-    hitPoints: 50
+    hitPoints: 10
     sizeMultiplier: 1
     color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+    xpReward: 1
   - level: 2
-    hitPoints: 150
+    hitPoints: 25
     sizeMultiplier: 1.25
     color: {r: 0, g: 1, b: 0, a: 1}
+    xpReward: 2
   - level: 3
-    hitPoints: 500
+    hitPoints: 100
     sizeMultiplier: 1.5
     color: {r: 0, g: 0, b: 1, a: 1}
+    xpReward: 5
   - level: 4
-    hitPoints: 2500
+    hitPoints: 500
     sizeMultiplier: 2
     color: {r: 1, g: 0, b: 1, a: 1}
+    xpReward: 10
   - level: 5
-    hitPoints: 10000
+    hitPoints: 5000
     sizeMultiplier: 3
     color: {r: 1, g: 0.48235294, b: 0, a: 1}
+    xpReward: 25

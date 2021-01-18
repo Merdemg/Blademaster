@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IDamagable
 {
     float Health = 100;
+    int xpReward = 0;
 
 
     public void TakeDamage(float Damage) {
@@ -16,6 +17,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         }
     }
     public void Die() {
+        PlayerLevel.Instance.GetXP(xpReward);
         Destroy(gameObject);
     }
 
@@ -23,4 +25,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         this.Health = Health;
     }
 
+    public void SetXPReward(int _XP) {
+        xpReward = _XP;
+    }
 }
