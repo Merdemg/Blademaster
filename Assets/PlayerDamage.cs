@@ -13,6 +13,9 @@ public class PlayerDamage : MonoBehaviour
 
     float timeMark = 0;
 
+    float critChance = 0.1f;
+    float critMultiplier = 3f;
+
     private void Awake() {
         
     }
@@ -22,7 +25,13 @@ public class PlayerDamage : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (Time.timeScale <= 0) {
+            return;
+        }
+
+
         float deltaTime = Time.time - timeMark;
+        deltaTime *= Time.timeScale;
         timeMark = Time.time;
 
 
@@ -38,10 +47,21 @@ public class PlayerDamage : MonoBehaviour
     }
 
     private void OnTriggerStay(Collider other) {
+        if (Time.timeScale <= 0) {
+            return;
+        }
+
+
         if (counter >= damageFrequency) {
             if (other.gameObject.GetComponentInParent<IDamagable>() != null) {
                 isSomethingHit = true;
-                other.GetComponentInParent<IDamagable>().TakeDamage(baseDamage);
+
+                float damage = baseDamage;
+                if (Random.value < critChance) { // Crit
+                    damage *= critMultiplier;
+                }
+                Debug.Log("Hitting for " + damage + " damage");
+                other.GetComponentInParent<IDamagable>().TakeDamage(damage);
             }
         }
     }
