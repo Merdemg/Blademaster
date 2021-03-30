@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyRandomization : MonoBehaviour
 {
-    [SerializeField] int Level = 1;
+    [SerializeField] bool isSolo = true;
+    [SerializeField] int level = 1;
     EnemyLevel enemyLevel = null;
     [SerializeField] Renderer renderer = null;
     [SerializeField] IDamagable damagable = null;
@@ -12,7 +13,15 @@ public class EnemyRandomization : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyLevel = EnemyManager.Instance.GetEnemyInfo(Level);
+        if (isSolo) {
+            InitEnemy(level);
+        }
+    }
+
+    public void InitEnemy(int Level) {
+        this.level = Level;
+
+        enemyLevel = EnemyManager.Instance.GetEnemyInfo(this.level);
 
         if (enemyLevel != null) {
             if (renderer) {
