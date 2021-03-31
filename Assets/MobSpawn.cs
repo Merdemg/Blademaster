@@ -11,14 +11,23 @@ public class MobSpawn : MonoBehaviour
 
     [SerializeField] EnemyRandomization enemyRand = null;
 
-    [SerializeField] Transform spawnPos = null;
+    [SerializeField] List<Transform> spawnPositions = new List<Transform>();
+
+    //[SerializeField] float enemyColliderSize = 2f;
+    //[SerializeField] LayerMask layerMask;
 
     private void Start() {
         int numOfEnemies = Random.Range(minNumOfEnemies, maxNumOfEnemies);
 
         for (int i = 0; i < numOfEnemies; i++) {
-            EnemyRandomization newEnemy = Instantiate(enemyRand.gameObject, spawnPos.position, Quaternion.identity).GetComponent<EnemyRandomization>();
-            newEnemy.InitEnemy(levelOfEnemies);
+            if (i <= spawnPositions.Count) {
+                Vector3 spawnPosActual = spawnPositions[i].position;
+                EnemyRandomization newEnemy = Instantiate(enemyRand.gameObject, spawnPosActual, Quaternion.identity).GetComponent<EnemyRandomization>();
+                newEnemy.InitEnemy(levelOfEnemies);
+            }
+            else {
+                Debug.LogWarning("Not enough spawn positions are assigned.");
+            }
         }
     }
 }
