@@ -10,6 +10,9 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     [SerializeField] GameObject popUpCanvas = null;
     [SerializeField] Transform popUpSpawnPos = null;
 
+    public delegate void OnEnemyDeath();
+    public OnEnemyDeath onEnemyDeath;
+
     public void TakeDamage(float Damage) {
         Health -= Damage;
         Debug.Log("Enemy took " + Damage + " damage! Health is now: " + Health);
@@ -23,6 +26,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
     public void Die() {
         PlayerLevel.Instance.GetXP(xpReward);
+        onEnemyDeath.Invoke();
         Destroy(gameObject);
     }
 
