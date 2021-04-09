@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    static PlayerMovement instance;
+    public static PlayerMovement Instance {
+        get { if (instance == null) instance = FindObjectOfType<PlayerMovement>(); return instance; }
+    }
+
     [SerializeField] float movementSpeed = 1f;
+    float movementSpeedMultiplier = 1f;
+
     [SerializeField] LayerMask planeLayer = 1 << 5;
 
     [SerializeField] Camera mainCamera = null;
@@ -33,8 +40,12 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 Dir = HitPos - PlayerPos;
                 Dir.Normalize();
 
-                transform.position += Dir * movementSpeed * Time.deltaTime;
+                transform.position += Dir * movementSpeed * movementSpeedMultiplier * Time.deltaTime;
             }
         }
+    }
+
+    public void SetMovementSpeedMultiplier(float Multiplier){
+        movementSpeedMultiplier = Multiplier;
     }
 }

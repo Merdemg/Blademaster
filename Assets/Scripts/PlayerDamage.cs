@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
+    static PlayerDamage instance;
+    public static PlayerDamage Instance {
+        get { if (instance == null) instance = FindObjectOfType<PlayerDamage>(); return instance; }
+    }
+
+
     float damageFrequency = 0.25f;
     float baseDamage = 1f;
 
     float counter = 0;
+    float attackSpeedMultiplier = 1f;
 
     bool isSomethingHit = false;
 
@@ -42,7 +49,7 @@ public class PlayerDamage : MonoBehaviour
             }
         }
         else {
-            counter += deltaTime;
+            counter += deltaTime * attackSpeedMultiplier;
         }
     }
 
@@ -66,8 +73,13 @@ public class PlayerDamage : MonoBehaviour
         }
     }
 
+    /// To be used when levelled up
     public void MultiplyBaseDamage(float _Multiplier) {
         baseDamage *= _Multiplier;
         Debug.Log("Base damage is now: " + baseDamage);
+    }
+
+    public void MultiplyAttackSpeed(float Multiplier){
+        attackSpeedMultiplier = Multiplier;
     }
 }
