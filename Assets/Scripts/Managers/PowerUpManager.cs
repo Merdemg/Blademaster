@@ -19,6 +19,8 @@ public class PowerUpManager : MonoBehaviour
     }
 
     public void ActivatePowerUp(PowerUp PowerUp) {
+        Debug.Log("Activating power up");
+
         if (activePowerUp != null) {
             activePowerUp.Deactivate();
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PUP_FasterAttack", menuName = "ScriptableObjects/PowerUp", order = 1)]
+[CreateAssetMenu(fileName = "PUP_FasterAttack", menuName = "ScriptableObjects/PowerUpFasterAttack", order = 1)]
 public class FasterAttack : PowerUp
 {
     const float SPEED_MULTIPLIER = 1.66f;
@@ -10,6 +10,7 @@ public class FasterAttack : PowerUp
     public override void Activate()
     {
         base.Activate();
+        Debug.Log("Faster attack activated");
         PlayerDamage.Instance.MultiplyAttackSpeed(SPEED_MULTIPLIER);
     }
 

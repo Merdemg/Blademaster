@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
     public void Die() {
         PlayerLevel.Instance.GetXP(xpReward);
-        onEnemyDeath.Invoke();
+        onEnemyDeath?.Invoke();
         Destroy(gameObject);
     }
 
